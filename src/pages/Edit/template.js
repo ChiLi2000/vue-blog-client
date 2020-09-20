@@ -5,7 +5,7 @@ export default {
       blogId: null,
       title: "",
       description: "",
-      content,
+      content:"",
       atIndex: false
     };
   },
