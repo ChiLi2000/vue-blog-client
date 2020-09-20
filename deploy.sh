@@ -4,6 +4,6 @@ rm -rf static *.html &&
 mv dist/* ./ &&
 rm -rf dist;
 git add . &&
-git commit -m 'updata' &&
+git commit -m 'update' &&
 git push &&
 git checkout -
