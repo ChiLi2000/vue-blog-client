@@ -1,5 +1,6 @@
 import marked from "marked";
 import blog from "@/api/blog";
+import { mapGetters, mapActions } from "vuex";
 import goTop from "@/components/goTop";
 
 export default {
@@ -12,11 +13,19 @@ export default {
     };
   },
 
+  computed: {
+    ...mapGetters(["isLogin"]),
+    markdown() {
+      return marked(this.rawContent);
+    }
+  },
+
   components: {
     goTop
   },
 
   created() {
+    this.checkLogin();
     this.blogId = this.$route.params.blogId;
     blog.getDetail({ blogId: this.blogId }).then(res => {
       this.title = res.data.title;
@@ -26,9 +35,7 @@ export default {
     });
   },
 
-  computed: {
-    markdown() {
-      return marked(this.rawContent);
-    }
+  methods: {
+    ...mapActions(["checkLogin"])
   }
 };
